@@ -4,7 +4,8 @@
         <h3>Hola mundo!</h3>
         <input type="text" placeholder="Your message..." v-model="message" />
         <br />
-        <Counter />
+        <h1>The current count is {{ value }}</h1>
+        <Counter v-bind:count="value" v-on:update:count="value = $event"/>
     </section>
 </template>
 
@@ -13,12 +14,19 @@
 
 <!-- to create a two-way binding between the input value and value saved in component, use v-model attribute/directive -->
 
+<!-- in Vue, to pass a dynamic value down to a child component, use v-bind directive-->
+
+<!-- $event is the result of the second argument passed from the emit method in counter.vue-->
+
+<!-- the info for value is now being saved in the app component rather than the counter component, so now the app component has access to it and now you can render it within this component-->
+
 <script>
 import Counter from './components/counter';
     export default {
         data () {
             return {
-                message: 'Hello World'
+                message: 'Hello World',
+                value: 1
             };
         },
         components: {
@@ -31,6 +39,8 @@ import Counter from './components/counter';
 
 <!-- since the name of the variable holding the reference to the counter is the same as the name of the property to be placed in this object, can say Counter instead of Counter: Counter -->
 <!-- when within Script and importing + adding to components list, MUST PascalCase-->
+
+<!-- saving the value of count in the app component itself. we pass it down to the Counter component (in template) and from counter.vue it accepts it as a prop and renders it -->
 
 <style lang="scss" >
     @import './app.scss'

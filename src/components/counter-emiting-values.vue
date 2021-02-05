@@ -1,15 +1,7 @@
 <template>
-    <span>Current count is: {{ $store.state.count }}</span>
-    <!-- this is how you access the value saved in the store within main.js -->
-
-    <button v-on:click="$store.commit('changeCount', -1)">-</button>
-    <button v-on:click="$store.commit('changeCount', 1)">+</button>
-    <!-- commit('nameOfMutation', _?_) -->
-
-
-    <!-- <button v-on:click="$store.state.count--">-</button> -->
-    <!-- <button v-on:click="$store.state.count++">+</button> -->
-    <!-- ^ this is bad practice! do NOT directly mutate a state saved within a store -->
+    <span>Current count is: {{ count }}</span>
+    <button v-on:click="$emit('update:count', count - 1)">-</button>
+    <button v-on:click="$emit('update:count', count + 1)">+</button>
 </template>
 
 <!-- not allowed to mutate a value that's being passed down as a prop, so can't use count++/count-- in button's v-on -->

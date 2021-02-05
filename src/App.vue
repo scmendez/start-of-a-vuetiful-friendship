@@ -4,8 +4,9 @@
         <h3>Hola mundo!</h3>
         <input type="text" placeholder="Your message..." v-model="message" />
         <br />
-        <h1>The current count is {{ value }}</h1>
-        <Counter v-bind:count="value" v-on:update:count="value = $event"/>
+        <h1>The current count is {{ $store.state.count }}</h1>
+        <!-- <Counter v-bind:count="value" v-on:update:count="value = $event"/> -->
+        <Counter />
     </section>
 </template>
 
